@@ -750,6 +750,62 @@ async def summary_command(interaction: discord.Interaction):
     await interaction.response.send_message(embed=embed)
 
 
+@tree.command(name="checkprogress", description="Kiểm tra ai chưa hoàn thành tasks hôm nay")
+async def checkprogress_command(interaction: discord.Interaction):
+    """Manually trigger progress check to see who hasn't completed today's tasks."""
+    today_str = get_today_str()
+    tasks_today = get_tasks_for_date(today_str)
+    pending_tasks = [t for t in tasks_today if not t.get("done", False)]
+    
+    if not pending_tasks:
+        await interaction.response.send_message(
+            "🎉 Tất cả tasks hôm nay đã hoàn thành!",
+            ephemeral=False
+        )
+        return
+    
+    # Group pending tasks by user
+    pending_by_user = {}
+    for task in pending_tasks:
+        owner = task.get("owner", "Unassigned")
+        if owner not in pending_by_user:
+            pending_by_user[owner] = []
+        pending_by_user[owner].append(task)
+    
+    description_lines = [f"**📋 Tasks hôm nay ({today_str}) chưa hoàn thành:**\n"]
+    
+    for owner, user_tasks in pending_by_user.items():
+        user_id = USER_IDS.get(owner)
+        mention = f"<@{user_id}>" if user_id else f"**{owner}**"
+        description_lines.append(f"{mention}: **{len(user_tasks)} task(s) pending**")
+        
+        # Show task details
+        for task in user_tasks[:3]:  # Limit to 3 tasks per user
+            priority_icon = "🔴" if "MUST" in task.get("priority", "") else "🟡"
+            description_lines.append(f"  {priority_icon} `{task.get('id')}` {task.get('description')}")
+        
+        if len(user_tasks) > 3:
+            description_lines.append(f"  ... và {len(user_tasks) - 3} task(s) khác")
+        
+        description_lines.append("")
+    
+    description_lines.append(
+        f"💬 Vui lòng cập nhật trạng thái trong <#{PROGRESS_UPDATE_CHANNEL_ID}>"
+    )
+    
+    embed = discord.Embed(
+        title="🔍 Kiểm Tra Tiến Độ",
+        description="\n".join(description_lines),
+        color=discord.Color.orange(),
+        timestamp=datetime.now(tz)
+    )
+    
+    done_count = len(tasks_today) - len(pending_tasks)
+    embed.set_footer(text=f"Hoàn thành: {done_count}/{len(tasks_today)} tasks ({done_count/len(tasks_today)*100:.0f}%)" if len(tasks_today) > 0 else "")
+    
+    await interaction.response.send_message(embed=embed)
+
+
 # ========== DEADLINE REMINDER (AUTO) ==========
 
 @tasks.loop(minutes=1)
