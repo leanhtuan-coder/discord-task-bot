@@ -1,0 +1,14 @@
+# Environment
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Sensitive files - DO NOT COMMIT
+credentials.json
+config.py
+
+# IDE
+.vscode/
+.idea/

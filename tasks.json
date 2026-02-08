@@ -1,0 +1,418 @@
+{
+  "tasks": [
+    {
+      "id": "T001",
+      "date": "08/02",
+      "owner": "Tuấn",
+      "description": "Tạo Facebook page cho nghiên cứu",
+      "priority": "MUST",
+      "done": true,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T002",
+      "date": "08/02",
+      "owner": "Tuấn",
+      "description": "Tạo group chat participants",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T003",
+      "date": "08/02",
+      "owner": "Thắng",
+      "description": "Draft Pre-test coding tasks (arrays, loops)",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T004",
+      "date": "08/02",
+      "owner": "Ngọc",
+      "description": "Setup Google Drive structure",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T005",
+      "date": "09/02",
+      "owner": "Thắng",
+      "description": "Draft Pre-test questionnaire (AI usage baseline)",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T006",
+      "date": "09/02",
+      "owner": "Thắng",
+      "description": "Draft Post-test components (4 tasks)",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T007",
+      "date": "09/02",
+      "owner": "Thắng",
+      "description": "Draft AI usage guidelines cho Group A",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T008",
+      "date": "09/02",
+      "owner": "Tuấn",
+      "description": "Viết recruitment post content",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T009",
+      "date": "10/02",
+      "owner": "Tuấn",
+      "description": "Draft bài tập Week 1 (3 bài arrays & loops)",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T010",
+      "date": "10/02",
+      "owner": "Tuấn",
+      "description": "Draft bài tập Week 2 (3 bài stack & queue)",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T011",
+      "date": "10/02",
+      "owner": "Tuấn",
+      "description": "Post recruitment lần 1",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T012",
+      "date": "11/02",
+      "owner": "Tuấn",
+      "description": "Draft bài tập Week 3 (3 bài sorting)",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T013",
+      "date": "11/02",
+      "owner": "Thắng",
+      "description": "Draft Explanation rubric (0-3 scale)",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T014",
+      "date": "11/02",
+      "owner": "Thắng",
+      "description": "Draft Tracing rubric (0-3 scale)",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T015",
+      "date": "12/02",
+      "owner": "Ngọc",
+      "description": "Create Google Form: Pre-test survey",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T016",
+      "date": "12/02",
+      "owner": "Ngọc",
+      "description": "Create Google Form: AI usage log (weekly)",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T017",
+      "date": "12/02",
+      "owner": "Ngọc",
+      "description": "Create Google Form: Post-test survey",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T018",
+      "date": "12/02",
+      "owner": "Tuấn",
+      "description": "Finalize 9 bài tập với test cases",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T019",
+      "date": "13/02",
+      "owner": "Ngọc",
+      "description": "Setup LMS/Colab environment",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T020",
+      "date": "13/02",
+      "owner": "Ngọc",
+      "description": "Create participant info sheet",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T021",
+      "date": "13/02",
+      "owner": "Tuấn",
+      "description": "Announce in classes",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T022",
+      "date": "13/02",
+      "owner": "Thắng",
+      "description": "Start Related Work section",
+      "priority": "NICE",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T023",
+      "date": "14/02",
+      "owner": "Thắng",
+      "description": "Finalize all rubrics",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T024",
+      "date": "14/02",
+      "owner": "Tú",
+      "description": "Create attendance tracking sheet",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T025",
+      "date": "14/02",
+      "owner": "Tú",
+      "description": "Book phòng lab",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T026",
+      "date": "14/02",
+      "owner": "Tuấn",
+      "description": "Post recruitment lần 2",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T027",
+      "date": "15/02",
+      "owner": "Thắng",
+      "description": "Pilot test Pre-test",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T028",
+      "date": "15/02",
+      "owner": "Tuấn",
+      "description": "Pilot test Practice problems",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T029",
+      "date": "15/02",
+      "owner": "Tuấn",
+      "description": "Check recruitment progress (target: 30+ sign-ups)",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T030",
+      "date": "16/02",
+      "owner": "Thắng",
+      "description": "Pilot test Post-test",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T031",
+      "date": "16/02",
+      "owner": "Thắng",
+      "description": "Revise instruments based on pilot feedback",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T032",
+      "date": "17/02",
+      "owner": "Tuấn",
+      "description": "Post recruitment lần 3 (final push)",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T033",
+      "date": "17/02",
+      "owner": "Thắng",
+      "description": "Finalize Pre-test (post-pilot)",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T034",
+      "date": "17/02",
+      "owner": "Tuấn",
+      "description": "Start Introduction section",
+      "priority": "NICE",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T035",
+      "date": "18/02",
+      "owner": "Thắng",
+      "description": "Finalize Post-test (post-pilot)",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T036",
+      "date": "18/02",
+      "owner": "Ngọc",
+      "description": "Finalize all Google Forms",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T037",
+      "date": "18/02",
+      "owner": "Tú",
+      "description": "Prepare printed materials",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T038",
+      "date": "19/02",
+      "owner": "Tuấn",
+      "description": "Confirm participant list (target: 50+)",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T039",
+      "date": "19/02",
+      "owner": "Thắng",
+      "description": "Balanced group assignment prep",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T040",
+      "date": "20/02",
+      "owner": "Tuấn",
+      "description": "Send confirmation to participants",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T041",
+      "date": "20/02",
+      "owner": "Tuấn",
+      "description": "Final check all materials",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T042",
+      "date": "21/02",
+      "owner": "Tuấn",
+      "description": "Brief participants về Pre-test",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T043",
+      "date": "21/02",
+      "owner": "Tú",
+      "description": "Setup phòng lab",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T044",
+      "date": "21/02",
+      "owner": "Tuấn",
+      "description": "Final team sync meeting",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T045",
+      "date": "22/02",
+      "owner": "Tuấn",
+      "description": "DESIGN LOCK - All instruments finalized",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    },
+    {
+      "id": "T046",
+      "date": "22/02",
+      "owner": "Tuấn",
+      "description": "Final brief to participants",
+      "priority": "MUST",
+      "done": false,
+      "created_at": "2026-02-07T23:00:00+07:00"
+    }
+  ]
+}
