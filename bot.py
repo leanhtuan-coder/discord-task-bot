@@ -221,7 +221,7 @@ def format_daily_tasks_message(tasks_today):
         
         lines.append("")
     
-    lines.append("Vui lòng cập nhật tiến độ trong <#{}> trước 22:00.".format(PROGRESS_UPDATE_CHANNEL_ID))
+    lines.append(f"Vui lòng cập nhật tiến độ trong <#{PROGRESS_UPDATE_CHANNEL_ID}> trước 22:00.")
     
     return "\n".join(lines)
 
@@ -296,13 +296,37 @@ async def daily_evening_reminder():
     if now.hour == 22 and now.minute == 0:
         channel = bot.get_channel(DAILY_TASKS_CHANNEL_ID)
         if channel:
+            # Get today's tasks that are NOT done
+            today_str = get_today_str()
+            tasks_today = get_tasks_for_date(today_str)
+            pending_tasks = [t for t in tasks_today if not t.get("done", False)]
+            
+            # Group pending tasks by user
+            pending_by_user = {}
+            for task in pending_tasks:
+                owner = task.get("owner", "Unassigned")
+                if owner not in pending_by_user:
+                    pending_by_user[owner] = []
+                pending_by_user[owner].append(task)
+            
+            description_lines = ["Nhắc nhở cập nhật tiến độ cuối ngày.\n"]
+            
+            if pending_by_user:
+                description_lines.append("**📋 Các bạn sau chưa hoàn thành tasks hôm nay:**\n")
+                for owner, user_tasks in pending_by_user.items():
+                    user_id = USER_IDS.get(owner)
+                    mention = f"<@{user_id}>" if user_id else f"**{owner}**"
+                    description_lines.append(f"{mention}: {len(user_tasks)} task(s) pending")
+                description_lines.append("")
+            
+            description_lines.append(
+                f"Vui lòng cập nhật trạng thái công việc trong <#{PROGRESS_UPDATE_CHANNEL_ID}>.\n\n"
+                "Nếu có blockers hoặc cần hỗ trợ, hãy thông báo để team có thể điều chỉnh kế hoạch."
+            )
+            
             embed = discord.Embed(
                 title="End-of-Day Reminder",
-                description=(
-                    "Nhắc nhở cập nhật tiến độ cuối ngày.\n\n"
-                    f"Vui lòng cập nhật trạng thái công việc trong <#{PROGRESS_UPDATE_CHANNEL_ID}>.\n\n"
-                    "Nếu có blockers hoặc cần hỗ trợ, hãy thông báo để team có thể điều chỉnh kế hoạch."
-                ),
+                description="\n".join(description_lines),
                 color=discord.Color.orange(),
                 timestamp=now
             )
