@@ -4,10 +4,10 @@ __pycache__/
 *$py.class
 venv/
 .env
+.env.local
 
 # Sensitive files - DO NOT COMMIT
 credentials.json
-config.py
 
 # IDE
 .vscode/
