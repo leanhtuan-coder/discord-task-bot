@@ -47,7 +47,9 @@ TIMEZONE = os.getenv("TIMEZONE", "Asia/Ho_Chi_Minh")
 # ========== GOOGLE SHEETS INTEGRATION ==========
 USE_GOOGLE_SHEETS = os.getenv("USE_GOOGLE_SHEETS", "True") == "True"
 GOOGLE_SHEET_ID = os.getenv("GOOGLE_SHEET_ID", "1JGTBm1j8dyXzoeklIOUrZoXaGz2MFpuA96mLAZCGHeU")
-GOOGLE_SHEET_WORKSHEET = os.getenv("GOOGLE_SHEET_WORKSHEET", "Timeline Feb 7-22")
+
+# Worksheet tabs to read tasks from (comma-separated for multiple)
+GOOGLE_SHEET_WORKSHEET = os.getenv("GOOGLE_SHEET_WORKSHEET", "Timeline Feb 7-22,Post-Feb-22 Execution")
 
 # ========== GOOGLE SERVICE ACCOUNT (for Railway) ==========
 # Railway will use this environment variable for credentials.json content

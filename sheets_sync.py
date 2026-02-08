@@ -50,7 +50,7 @@ def get_sheets_client():
 
 def load_tasks_from_sheets(sheet_id, worksheet_name="Timeline Feb 7-22", tz=ZoneInfo("Asia/Ho_Chi_Minh")):
     """
-    Load tasks from Google Sheets.
+    Load tasks from Google Sheets. Supports multiple worksheets.
     
     Expected columns:
     - Date (str): Date in DD/MM format (e.g., 07/02)
@@ -65,12 +65,30 @@ def load_tasks_from_sheets(sheet_id, worksheet_name="Timeline Feb 7-22", tz=Zone
     
     Args:
         sheet_id (str): Google Sheet ID
-        worksheet_name (str): Name of the worksheet tab to read from
+        worksheet_name (str): Name(s) of worksheet tab(s), comma-separated for multiple
         tz (ZoneInfo): Timezone
     
     Returns:
         dict: {"tasks": [list of task dicts]}
     """
+    # Parse worksheet names (support comma-separated)
+    worksheet_names = [name.strip() for name in worksheet_name.split(',')]
+    
+    all_tasks = []
+    task_id_counter = 1
+    
+    for ws_name in worksheet_names:
+        print(f"Loading tasks from worksheet: '{ws_name}'")
+        tasks_from_ws = _load_tasks_from_single_worksheet(sheet_id, ws_name, tz, task_id_counter)
+        all_tasks.extend(tasks_from_ws)
+        task_id_counter += len(tasks_from_ws)
+    
+    print(f"Debug: Loaded {len(all_tasks)} total tasks from {len(worksheet_names)} worksheet(s)")
+    return {"tasks": all_tasks}
+
+
+def _load_tasks_from_single_worksheet(sheet_id, worksheet_name, tz, start_id=1):
+    """Helper function to load tasks from a single worksheet."""
     client = get_sheets_client()
     sheet = client.open_by_key(sheet_id)
     
@@ -79,14 +97,14 @@ def load_tasks_from_sheets(sheet_id, worksheet_name="Timeline Feb 7-22", tz=Zone
     except Exception as e:
         print(f"Error: Could not find worksheet '{worksheet_name}'")
         print(f"Available worksheets: {[ws.title for ws in sheet.worksheets()]}")
-        raise e
+        return []  # Return empty list instead of raising
     
     # Get all values as raw data
     all_values = worksheet.get_all_values()
     
     if len(all_values) < 2:
-        print("Warning: Sheet has less than 2 rows (header + data)")
-        return {"tasks": []}
+        print(f"Warning: Worksheet '{worksheet_name}' has less than 2 rows (header + data)")
+        return []
     
     # First row is header
     headers = all_values[0]
@@ -106,11 +124,10 @@ def load_tasks_from_sheets(sheet_id, worksheet_name="Timeline Feb 7-22", tz=Zone
             date_col_idx = idx
             col_map['date'] = idx
     
-    print(f"Debug: Found columns: {list(col_map.keys())}")
-    print(f"Debug: Date column index: {date_col_idx}")
+    print(f"Debug [{worksheet_name}]: Found columns: {list(col_map.keys())}")
     
     tasks = []
-    task_id_counter = 1
+    task_id_counter = start_id
     current_date = None  # For handling merged date cells
     
     # Process each data row
@@ -211,12 +228,13 @@ def load_tasks_from_sheets(sheet_id, worksheet_name="Timeline Feb 7-22", tz=Zone
             'deliverable': deliverable,
             'dependencies': dependencies,
             'notes': notes,
+            'worksheet': worksheet_name,  # Track which worksheet this came from
         }
         
         tasks.append(task)
     
-    print(f"Debug: Loaded {len(tasks)} tasks from Google Sheets")
-    return {"tasks": tasks}
+    print(f"Debug [{worksheet_name}]: Loaded {len(tasks)} tasks")
+    return tasks
 
 
 
