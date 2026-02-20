@@ -557,6 +557,45 @@ async def status_command(interaction: discord.Interaction):
     await interaction.response.send_message(embed=embed)
 
 
+@tree.command(name="debug", description="Debug: xem raw status từ Google Sheets (Research Lead only)")
+async def debug_command(interaction: discord.Interaction):
+    """Show raw task status values loaded from Google Sheets for debugging."""
+    lead_id = USER_IDS.get("Tuấn")
+    if interaction.user.id != lead_id:
+        await interaction.response.send_message("Chỉ Research Lead mới dùng được lệnh này.", ephemeral=True)
+        return
+
+    await interaction.response.defer(ephemeral=True)
+
+    data = load_tasks()
+    tasks = data.get("tasks", [])
+
+    if not tasks:
+        await interaction.followup.send("Không load được task nào từ Sheets.", ephemeral=True)
+        return
+
+    today_str = get_today_str()
+    lines = [f"**Debug: {len(tasks)} tasks loaded. Today = `{today_str}`**\n"]
+    lines.append("Format: `[ID] [date] [done?] [raw status] — owner: task`\n")
+
+    # Show last 20 tasks to avoid char limit
+    for task in tasks[-20:]:
+        done_flag = "✅" if task.get("done") else "❌"
+        raw_status = task.get("status", "N/A")
+        ws = task.get("worksheet", "?")
+        lines.append(
+            f"`{task.get('id','?')}` [{task.get('date','?')}] {done_flag} `\"{raw_status}\"` "
+            f"({ws}) — {task.get('owner','?')}: {task.get('description','?')[:40]}"
+        )
+
+    content = "\n".join(lines)
+    # Discord limit is 2000 chars per message
+    if len(content) > 1900:
+        content = content[:1900] + "\n...(truncated)"
+
+    await interaction.followup.send(content, ephemeral=True)
+
+
 # ========== NEW COMMANDS ==========
 
 @tree.command(name="week", description="Xem tasks cả tuần")
