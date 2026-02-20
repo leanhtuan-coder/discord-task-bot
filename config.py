@@ -29,7 +29,7 @@ ANNOUNCEMENTS_CHANNEL_ID = int(os.getenv("ANNOUNCEMENTS_CHANNEL_ID", "1470050849
 USER_IDS = {
     "Tuấn": int(os.getenv("USER_ID_TUAN", "972863389690920971")),
     "Thắng": int(os.getenv("USER_ID_THANG", "1081547094520766474")),
-    "Ngọc": int(os.getenv("USER_ID_NGOC", "123456789012345678")),
+    "Ngọc": int(os.getenv("USER_ID_NGOC", "1460205441459163231")),
     "Tú": int(os.getenv("USER_ID_TU", "1388827370341007447")),
 }
 

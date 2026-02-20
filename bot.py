@@ -431,12 +431,13 @@ async def done_command(interaction: discord.Interaction, task_id: str):
     # Save to appropriate backend
     if USE_GOOGLE_SHEETS:
         try:
-            # Use task description (Task Name) to find in sheet
+            # Use the task's stored worksheet name (each task tracks which sheet it came from)
+            task_worksheet = task_found.get("worksheet", GOOGLE_SHEET_WORKSHEET.split(',')[0].strip())
             mark_task_done_in_sheets(
                 GOOGLE_SHEET_ID,
                 task_found.get("description"),
                 str(interaction.user.id),
-                GOOGLE_SHEET_WORKSHEET,
+                task_worksheet,
                 tz
             )
         except Exception as e:
