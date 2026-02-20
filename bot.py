@@ -56,17 +56,28 @@ tree = bot.tree
 # Timezone
 tz = ZoneInfo(TIMEZONE)
 
+# Track whether last load came from Sheets or JSON fallback
+_last_sheets_error: str = ""
+_using_sheets: bool = False
+
 
 def load_tasks():
     """Load tasks from JSON file or Google Sheets."""
+    global _last_sheets_error, _using_sheets
     if USE_GOOGLE_SHEETS:
         try:
-            return load_tasks_from_sheets(GOOGLE_SHEET_ID, GOOGLE_SHEET_WORKSHEET, tz)
+            result = load_tasks_from_sheets(GOOGLE_SHEET_ID, GOOGLE_SHEET_WORKSHEET, tz)
+            _last_sheets_error = ""
+            _using_sheets = True
+            return result
         except Exception as e:
+            _last_sheets_error = str(e)
+            _using_sheets = False
             print(f"Error loading from Google Sheets: {e}")
             print("Falling back to tasks.json")
 
-    
+    _using_sheets = False
+
     # Load from JSON file
     tasks_file = os.path.join(os.path.dirname(__file__), "tasks.json")
     try:
@@ -576,6 +587,18 @@ async def debug_command(interaction: discord.Interaction):
 
     today_str = get_today_str()
     lines = [f"**Debug: {len(tasks)} tasks loaded. Today = `{today_str}`**\n"]
+
+    # Show data source status
+    if _using_sheets:
+        lines.append("📗 **Nguồn dữ liệu: Google Sheets** ✅\n")
+    else:
+        lines.append("📕 **Nguồn dữ liệu: tasks.json (FALLBACK)** ⚠️")
+        if _last_sheets_error:
+            err_short = _last_sheets_error[:200]
+            lines.append(f"❌ **Lỗi Sheets:** `{err_short}`\n")
+        else:
+            lines.append("(USE_GOOGLE_SHEETS=False hoặc chưa load lần nào)\n")
+
     lines.append("Format: `[ID] [date] [done?] [raw status] — owner: task`\n")
 
     # Show last 20 tasks to avoid char limit
